@@ -1,0 +1,53 @@
+
+<a href="/product/new" class="btn btn-info">Products</a>
+@model Product
+
+<h3>@Model.PName </h3>
+<div min="2">$@Model.Price</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Product Categories: </h3>
+            <ul>
+                @foreach(var c in Model.Categories)
+                {
+                    <li>@c.NavCategory.CName
+                        <form action="/delete/@c.AssociationId" class="close" method="post">
+                            <button class="close">&times;</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h3>Add Category</h3>
+            <form class="form-inline" action="/product/@Model.ProductId" method="post">
+                <select class="form-control col mr-sm-2" name="CategoryId">
+            
+                @foreach (var p in ViewBag.NotOnProduct)
+                {
+                    <option value="@p.CategoryId">@p.CName</option>
+                }
+                
+                
+            
+                </select>
+                <input type="submit"  value="Add" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@* @* @foreach (var item in ViewBag.AddedCategory)
+                {
+                    <li>@item.CName</li>
+                } *@
+
+                @* @foreach (var item in ViewBag.CategoriesInProduct)
+                {
+                    <li>@item.NavCategory.CName</li>
+                }  *@

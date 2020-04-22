@@ -1,0 +1,37 @@
+@model Category
+
+
+<div class="jumbotron m-5 col-7 pl-5">
+    <a href="/product/new" class="btn btn-info">Products</a>
+    <a href="categories" class="btn btn-info">Categories</a>
+    <h3>Add a new Category</h3>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <form class="col-5" asp-action="Process" method="post">
+    <div class="form-group">
+        <span style="color:red;" asp-validation-for="CName"></span>
+        <label asp-for="CName"></label>
+        <input asp-for="CName" class="form-control">
+    </div>
+    <input type="submit" class= "btn btn-info" value="Create">
+
+</form>
+</div>
+            <div class="col-lg-6">
+                <h1>Existing Products</h1>
+                
+                @foreach (var item in ViewBag.AllCategories)
+                {
+                    <p> <a href="/category/@item.CategoryId">@item.CName</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
